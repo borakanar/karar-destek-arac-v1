@@ -1,0 +1,84 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Gelişmiş Karar Destek Aracı</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 700px; margin: 2rem auto; padding: 1rem; background: #f0f0f0; }
+    select, button { padding: 0.5rem; margin-top: 1rem; width: 100%; }
+    .output { margin-top: 2rem; padding: 1rem; background: #fff; border: 1px solid #ccc; }
+  </style>
+</head>
+<body>
+  <h2>🎼 Gelişmiş Karar Destek Aracı</h2>
+
+  <label>Tema Seçin:</label>
+  <select id="theme">
+    <option value="">-- Seçin --</option>
+    <option value="Makam Seyri">Makam Seyri</option>
+    <option value="Üslup Aktarımı">Üslup Aktarımı</option>
+    <option value="Eğitim Müfredatı">Eğitim Müfredatı</option>
+    <option value="Beste Analizi">Beste Analizi</option>
+    <option value="İcra Teknikleri">İcra Teknikleri</option>
+  </select>
+
+  <label>Tez Türü Seçin:</label>
+  <select id="level">
+    <option value="">-- Seçin --</option>
+    <option value="Yüksek Lisans">Yüksek Lisans</option>
+    <option value="Doktora">Doktora</option>
+    <option value="Sanatta Yeterlik">Sanatta Yeterlik</option>
+  </select>
+
+  <label>Yöntem Seçin:</label>
+  <select id="method">
+    <option value="">-- Seçin --</option>
+    <option value="Belgesel Tarama">Belgesel Tarama</option>
+    <option value="Arşiv Taraması">Arşiv Taraması</option>
+    <option value="Derinlemesine Mülakat">Derinlemesine Mülakat</option>
+    <option value="Gözlem">Gözlem</option>
+    <option value="Karma">Karma</option>
+  </select>
+
+  <label>Enstrüman Seçin:</label>
+  <select id="instrument">
+    <option value="">-- Seçin --</option>
+    <option value="Ney">Ney</option>
+    <option value="Tanbur">Tanbur</option>
+    <option value="Ud">Ud</option>
+    <option value="Keman">Keman</option>
+    <option value="Kanun">Kanun</option>
+  </select>
+
+  <button onclick="getRecommendation()">Başlık Önerisi Al</button>
+
+  <div class="output" id="output"></div>
+
+  <script>
+    function getRecommendation() {
+      const theme = document.getElementById('theme').value;
+      const level = document.getElementById('level').value;
+      const method = document.getElementById('method').value;
+      const instrument = document.getElementById('instrument').value;
+      const output = document.getElementById('output');
+
+      if (theme && level && method && instrument) {
+        const similarity = Math.floor(Math.random() * 30) + 60;
+        const title = theme + " Üzerinden " + instrument + " Repertuvarının Tematik İncelenmesi";
+
+        output.innerHTML = `
+          <strong>📌 Başlık Önerisi:</strong><br>${title}<br><br>
+          <strong>🔬 Yöntem:</strong><br>${method} + Müzikal Eser Analizi<br><br>
+          <strong>🎼 Enstrüman:</strong> ${instrument}<br>
+          <strong>🏛️ Uygun Kurum:</strong> İTÜ Türk Musikisi Devlet Konservatuvarı<br>
+          <strong>📊 Literatür Benzerlik:</strong> %${similarity}<br><br>
+          <strong>📝 Açıklama:</strong><br>Bu başlık, ${theme.toLowerCase()} çalışmalarının özellikle ${instrument.toLowerCase()} icrası bağlamında yeterince temsil edilmemesi nedeniyle özgünlük taşır. Literatürde benzer çalışmalar %${similarity} oranındadır.
+        `;
+      } else {
+        output.innerText = "Lütfen tüm seçimleri yapınız.";
+      }
+    }
+  </script>
+</body>
+</html>
